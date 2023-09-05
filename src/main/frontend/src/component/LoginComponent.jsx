@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import AuthenticationService from "../service/AuthenticationService";
 import axios from "axios";
+import {AuthApi, login} from "../service/AuthApi";
 
 function LoginComponent(props) {
   const [state, setState] = useState({
     email: '1@1.1',
-    password: '',
-    hasLoginFailed: false,
-    showSuccessMessage: false
+    password: ''
   });
 
   const handleChange = (e) => {
@@ -18,35 +17,35 @@ function LoginComponent(props) {
   };
 
   const loginClicked = () => {
-    AuthenticationService.executeJwtAuthenticationService(state.email, state.password)
-        .then((res) => {
-          console.log(res);
+    //axios 인터셉터 방식
+    // AuthenticationService.executeJwtAuthenticationService(state.email, state.password)
+    //     .then((res) => {
+    //       console.log(res);
+    //       localStorage.setItem('token', res.data.token);
+    //     }).catch(error => {
+    //   console.log(error);
+    // });
 
-          localStorage.setItem('token', res.data.token);
-          // AuthenticationService.registerSuccessfulLoginForJwt(res);
-
-        }).catch(error => {
-      console.log(error);
-      setState(
-          {
-            ...state,
-            showSuccessMessage: false,
-            hasLoginFailed: true
-          }
-      );
-    });
-  };
-
-  const testClicked = () => {
-    AuthenticationService.setupAxiosInterceptors();
-    axios.get('http://localhost:8080/test')
+    // axios create를 이용한 방식
+    // 참고 링크 https://velog.io/@sihoon_cho/React-SpringBoot-JWT-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84-React%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+    login(state)
         .then(res => {
-              console.log(res);
-            }
-        )
+          console.log(res);
+          localStorage.setItem('token', res.data.token);
+        })
         .catch(err => {
           console.log(err);
         });
+  };
+
+  const testClicked = () => {
+    AuthApi.get('/test')
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        })
   }
 
   return (<div>

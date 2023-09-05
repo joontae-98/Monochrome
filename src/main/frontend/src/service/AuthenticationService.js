@@ -17,22 +17,22 @@ class AuthenticationService {
     this.setupAxiosInterceptors(res.token);
   }
 
-  setupAxiosInterceptors() {
-    axios.interceptors.request.use(
-        config => {
-          const token = localStorage.getItem('token');
-          console.log(token);
-          if (token) {
-            config.headers['Authorization'] = 'Bearer ' + token;
-
-          }
-          // config.headers['Content-Type'] = 'application/json';
-          return config;
-        },
-        error => {
-          Promise.reject(error)
-        });
-  }
+  // setupAxiosInterceptors() {
+  //   axios.interceptors.request.use(
+  //       config => {
+  //         const token = localStorage.getItem('token');
+  //         console.log(token);
+  //         if (token) {
+  //           config.headers['Authorization'] = 'Bearer ' + token;
+  //
+  //         }
+  //         // config.headers['Content-Type'] = 'application/json';
+  //         return config;
+  //       },
+  //       error => {
+  //         Promise.reject(error)
+  //       });
+  // }
 
   //수정 필요
   isUserLoggedIn() {

@@ -29,7 +29,7 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/**", "/main/**", "/detail/**").permitAll()
+                    .requestMatchers("/auth/**", "/main/**", "/detail/**", "/").permitAll()
                     .anyRequest().authenticated())
             .csrf(AbstractHttpConfigurer::disable)
             //cors 에러 해결을 위한 코드 추가
