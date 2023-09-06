@@ -1,13 +1,13 @@
 import React from 'react';
 import AuthenticationService from "../service/AuthenticationService";
 import {Link} from "react-router-dom";
-import {AuthApi} from "../service/AuthApi";
 
-function MenuComponent() {
-  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+function Header() {
   const logout = () => {
-    localStorage.removeItem('token');
+    const token = localStorage.getItem('token');
+    console.log(`token : ${token}`);
   }
+
   return (
       <header>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -16,14 +16,14 @@ function MenuComponent() {
             <li><Link className="nav-link" to="/courses">Courses</Link></li>
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
-            <Link className="nav-link" to="/logout" onClick={logout}>Logout</Link>
-            {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
-            {isUserLoggedIn &&
-                <li><Link className="nav-link" to="/logout" onClick={logout}>Logout</Link></li>}
+            <button type={'button'} className={'btn btn-primary'} onClick={logout}>token</button>
+            {/*{!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}*/}
+            {/*{isUserLoggedIn &&*/}
+            {/*    <li><Link className="nav-link" to="/logout" onClick={logout}>Logout</Link></li>}*/}
           </ul>
         </nav>
       </header>
   )
 }
 
-export default MenuComponent;
+export default Header;

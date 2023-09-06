@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import AuthenticationService from "../service/AuthenticationService";
-import axios from "axios";
-import {AuthApi, login} from "../service/AuthApi";
+import {login} from "../service/AuthApi";
 
-function LoginComponent(props) {
+function Login(props) {
   const [state, setState] = useState({
     email: '1@1.1',
     password: ''
@@ -30,8 +28,8 @@ function LoginComponent(props) {
     // 참고 링크 https://velog.io/@sihoon_cho/React-SpringBoot-JWT-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84-React%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
     login(state)
         .then(res => {
-          console.log(res);
           localStorage.setItem('token', res.token);
+          window.location.href = '/';
         })
         .catch(err => {
           console.log(err);
@@ -39,14 +37,7 @@ function LoginComponent(props) {
   };
 
   const testClicked = () => {
-    console.log(localStorage.getItem('token'));
-    AuthApi.get('/test')
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        })
+    localStorage.removeItem('token')
   }
 
   return (<div>
@@ -58,8 +49,9 @@ function LoginComponent(props) {
       Password: <input type="password" name="password" value={state.password} onChange={handleChange}></input>
       <button className="btn btn-success" onClick={loginClicked}>Login</button>
       <button type={'button'} className={'btn btn-primary'} onClick={testClicked}>test</button>
+
     </div>
   </div>)
 }
 
-export default LoginComponent;
+export default Login;
