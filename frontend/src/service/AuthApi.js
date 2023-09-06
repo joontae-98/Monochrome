@@ -1,4 +1,5 @@
 import axios from "axios";
+import {USER_NAME_SESSION_ATTRIBUTE_NAME} from "./AuthenticationService";
 
 let ACCESS_TOKEN = localStorage.getItem("token");
 
@@ -33,4 +34,11 @@ export const goToLogin = (error) => {
     console.log("http error");
     console.log(error);
   }
+}
+
+// 로그인 확인 함수 추가
+export const isUserLoggedIn = () => {
+  let user = localStorage.getItem('token');
+  if (user === null) return false;
+  return true;
 }
