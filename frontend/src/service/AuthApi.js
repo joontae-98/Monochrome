@@ -12,8 +12,9 @@ export const AuthApi = axios.create({
 });
 
 /** LOGIN API */
-export const login = ({email, password}) => {
+// promise 객체로 리턴하기 위해 async await 사용
+export const login = async ({email, password}) => {
   const data = {email, password};
-  console.log(data);
-  return AuthApi.post(`/auth/authenticate`, data);
+  const response = await AuthApi.post(`/auth/authenticate`, data);
+  return response.data;
 }

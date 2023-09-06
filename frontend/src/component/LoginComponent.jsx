@@ -31,7 +31,7 @@ function LoginComponent(props) {
     login(state)
         .then(res => {
           console.log(res);
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('token', res.token);
         })
         .catch(err => {
           console.log(err);
@@ -39,6 +39,7 @@ function LoginComponent(props) {
   };
 
   const testClicked = () => {
+    console.log(localStorage.getItem('token'));
     AuthApi.get('/test')
         .then(res => {
           console.log(res);
