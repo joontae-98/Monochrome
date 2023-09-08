@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import {Container} from "react-bootstrap";
 import {Route, Routes} from "react-router";
 import Main from "./components/Main";
