@@ -1,0 +1,36 @@
+/* 추가 css list */
+@import "user.css";
+
+/*
+작성자 : chanmi
+사이트 전체 기본 적용 폰트 및 추가 적용 가능 폰트
+*/
+
+@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css');
+@import url('https://webfontworld.github.io/gmarket/GmarketSans.css');
+
+body		{ font-family: 'NanumSquare', sans-serif }
+.normal		{ font-weight: 400 }
+.bold		{ font-weight: 700 }
+.bolder		{ font-weight: 800 }
+.light		{ font-weight: 300 }
+
+/* css 설정 예시 > font-family: 'GmarketSans';*/
+
+/* css 설정 예시 > font-family: 'yg-jalnan';*/
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* input password 타입에서 nanumsquare 은 오류가 발생함 */
+input[type=password] {
+  font-family: sans-serif;
+}
+
+input[type=password]::placeholder {
+  font-family: 'NanumSquare', sans-serif;
+  opacity: 1; /* Firefox */
+}
