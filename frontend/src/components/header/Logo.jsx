@@ -5,7 +5,7 @@ import {Navbar} from "react-bootstrap";
 function Logo() {
 
   return (<Navbar.Brand>
-    <Link to={'/'}>Monochrome</Link>
+    <Link to={'/'} className={'logo'}>Monochrome</Link>
   </Navbar.Brand>)
 }
 

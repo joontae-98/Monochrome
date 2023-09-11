@@ -1,0 +1,12 @@
+Link, a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* logo */
+.logo {
+  font-family: 'GmarketSans';
+  font-weight: bolder;
+  letter-spacing: -0.07rem;
+  /*font-size: 1.4rem;*/
+}
