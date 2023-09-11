@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import './static/css/style.css';
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
@@ -9,6 +8,8 @@ import {Route, Routes} from "react-router";
 import Main from "./components/Main";
 import Login from "./components/Login";
 import Test from "./components/Test";
+import Join from "./components/user/Join";
+import MyPage from "./components/user/MyPage";
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
               <Route path={'/'} element={<Main/>}/>
               <Route path={'/login'} element={<Login/>}/>
               <Route path={'/test'} element={<Test/>}/>
+              <Route path={'/join'} element={<Join />} />
+              <Route path={'/myPage/*'} element={<MyPage />} />
             </Routes>
           </Container>
           {/*  footer*/}
