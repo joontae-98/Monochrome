@@ -1,9 +1,17 @@
 import React from 'react';
-import {isUserLoggedIn} from "../../service/AuthApi";
+import {isUserLoggedIn, logout} from "../../service/AuthApi";
+import {Button} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 function LoginBtn() {
 
-  return isUserLoggedIn() ? <h6>logout</h6> : <h6>login</h6>
+  return (
+    isUserLoggedIn() ?
+    <Button onClick={logout}>Logout</Button>
+    : <Link to={'/login'}>
+        <h6>Login</h6>
+      </Link>
+  )
 }
 
 export default LoginBtn;
