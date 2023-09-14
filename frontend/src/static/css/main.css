@@ -1,0 +1,16 @@
+.main-swiper {
+    border-radius: 10px;
+}
+
+/*swiper 버튼 숨김 style*/
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+/*scrollbar size 수정 style*/
+.swiper-scrollbar{
+    max-width: 300px;
+    /*화면 축소 시 overflow 발생 추후 수정*/
+    transform: translateX(150%);
+}

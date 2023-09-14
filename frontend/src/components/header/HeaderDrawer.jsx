@@ -16,7 +16,7 @@ function HeaderDrawer(props) {
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
-        direction='left'
+        direction='left'  
         size={500}
       >
         <h2>상의</h2>
