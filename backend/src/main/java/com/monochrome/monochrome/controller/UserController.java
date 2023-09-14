@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RequestMapping(value = "/auth")
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -19,14 +20,14 @@ public class UserController {
 //  private final CartService cartService;
 
   // 아이디 중복 체크
-  @RequestMapping(value = "/auth/emailCheck", method = RequestMethod.POST)
-  public ResponseEntity<Boolean> emailCheck(@RequestParam String email) {
+  @RequestMapping(value = "/check/emailCheck", method = RequestMethod.POST)
+  public ResponseEntity<Boolean> emailCheck(@RequestBody String email) throws Exception{
     // email이 존재한다면 true 반환 없다면 false 반환
     return ResponseEntity.ok(userService.checkEmailDuplicate(email));
   }
 
   // 회원가입
-  @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
+  @RequestMapping(value = "/register", method = RequestMethod.POST)
   public String register(
     @RequestBody RegisterRequest request
   ) throws Exception {
@@ -38,7 +39,7 @@ public class UserController {
   }
 
   // 로그인
-  @RequestMapping(value = "/auth/authenticate", method = RequestMethod.POST)
+  @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
   public ResponseEntity<AuthenticationResponse> authenticate(
     @RequestBody AuthenticationRequest request
   ) {
