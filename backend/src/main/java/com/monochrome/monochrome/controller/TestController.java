@@ -18,20 +18,14 @@ public class TestController {
     return ResponseEntity.ok("hello");
   }
 
-  @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
+  /*@RequestMapping(value = "/auth/register", method = RequestMethod.POST)
   public ResponseEntity<AuthenticationResponse> register(
           @RequestBody RegisterRequest request
   ) throws Exception {
     return ResponseEntity.ok(authenticationService.register(request));
-  }
+  }*/
 
-  // 로그인
-  @RequestMapping(value = "/auth/authenticate", method = RequestMethod.POST)
-  public ResponseEntity<AuthenticationResponse> authenticate(
-          @RequestBody AuthenticationRequest request
-  ) {
-    return ResponseEntity.ok(authenticationService.authenticate(request));
-  }
+
 
 
   // cart 값 insert 테스트를 위한 함수
