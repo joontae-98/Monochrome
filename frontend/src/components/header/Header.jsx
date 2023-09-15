@@ -14,7 +14,7 @@ function Header() {
   return (
       <Container fluid={'md'} className={'mx-auto'}>
         <Navbar>
-          <Container>
+          <Container className={'py-3'}>
             <Logo/>
             <HeaderRight/>
           </Container>

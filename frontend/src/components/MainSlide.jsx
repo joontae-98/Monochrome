@@ -27,7 +27,7 @@ function MainSlide(props) {
     }}
     onSwiper={(swiper) => console.log(swiper)}
     onSlideChange={() => console.log('slide change')}
-    className={'main-swiper'}
+    className={'main-swiper my-5'}
   >
     <SwiperSlide>
       <BannerImg src={banner1}/>
