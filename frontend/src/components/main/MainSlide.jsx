@@ -6,10 +6,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
-import banner1 from '../static/banner/banner1.jpg';
-import banner2 from '../static/banner/banner2.jpg';
-import banner3 from '../static/banner/banner3.jpg';
-import {BannerImg} from "./style/MainStyle";
+import banner1 from '../../static/images/banner/banner1.jpg';
+import banner2 from '../../static/images/banner/banner2.jpg';
+import banner3 from '../../static/images/banner/banner3.jpg';
+import {BannerImg} from "../style/MainStyle";
 
 function MainSlide(props) {
   return (<Swiper

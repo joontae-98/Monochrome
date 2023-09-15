@@ -5,7 +5,7 @@ import {BrowserRouter} from "react-router-dom";
 import Header from "./components/header/Header";
 import {Container} from "react-bootstrap";
 import {Route, Routes} from "react-router";
-import Main from "./components/Main";
+import Main from "./components/main/Main";
 import Login from "./components/Login";
 import Test from "./components/Test";
 import Join from "./components/user/Join";

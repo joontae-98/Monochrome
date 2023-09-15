@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import MainSlide from "./MainSlide";
+import MainList from "./MainList";
 
 function Main() {
 
@@ -13,6 +14,7 @@ function Main() {
     <Link to={'/login'}>login</Link>
 
     <MainSlide/>
+    <MainList/>
   </>)
 }
 
