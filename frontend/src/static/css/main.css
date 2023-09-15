@@ -12,5 +12,5 @@
 .swiper-scrollbar{
     max-width: 300px;
     /*화면 축소 시 overflow 발생 추후 수정*/
-    transform: translateX(150%);
+    transform: translateX(162%);
 }
