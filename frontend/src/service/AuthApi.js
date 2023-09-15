@@ -27,6 +27,7 @@ export const logout = () => {
   localStorage.removeItem('token');
   window.location.href = '/';
 }
+
 export const goToLogin = (error) => {
   if (error.response.status === 403) {
     window.location.href = "/login"; // redirect
@@ -42,3 +43,4 @@ export const isUserLoggedIn = () => {
   if (user === null) return false;
   return true;
 }
+

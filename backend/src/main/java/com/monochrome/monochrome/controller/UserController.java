@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RequestMapping(value = "/auth")
 @RestController
 @RequiredArgsConstructor
@@ -21,9 +23,9 @@ public class UserController {
 
   // 아이디 중복 체크
   @RequestMapping(value = "/check/emailCheck", method = RequestMethod.POST)
-  public ResponseEntity<Boolean> emailCheck(@RequestBody String email) throws Exception{
+  public ResponseEntity<Boolean> emailCheck(@RequestBody Map<String, String> data) throws Exception{
     // email이 존재한다면 true 반환 없다면 false 반환
-    return ResponseEntity.ok(userService.checkEmailDuplicate(email));
+    return ResponseEntity.ok(userService.checkEmailDuplicate(data.get("email")));
   }
 
   // 회원가입

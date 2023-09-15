@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
+import {emailCheck, nameCheck, passwordCheck, phoneCheck} from "../../service/ValidateCheck";
 
 export const UserLayout = styled.div`
   margin: 7rem auto;
@@ -67,6 +68,10 @@ const UserInputStyle = styled.input `
     outline: none;
     border-bottom: 1px solid #555;
   }
+
+  &:focus::placeholder {
+    color :transparent;
+  }
 `;
 
 export function LoginInput({children, ...props}) {
@@ -81,14 +86,81 @@ export function LoginInput({children, ...props}) {
   )
 }
 
-export function JoinInput({children, ...props}) {
+/* join */
+
+const CheckMessage = styled.p `
+  margin-bottom: 0.9rem;
+  color: ${ (props) => (props.$state === "success" ? "green" : "red")};
+  font-size: 0.90rem;
+  font-weight: 400;
+  height: 1.1rem;
+`;
+
+const JoinInputStyle = styled(UserInputStyle)`
+  margin-bottom: 0.4rem;
+`;
+
+export function JoinInput({children, checkFunction, name, ...props}) {
+
+  const [checkData, setCheckData] = useState({
+    state : "fail",
+    message : "",
+  });
+
+  /*const typeFuncion = {
+    email : emailCheck,
+    password : passwordCheck,
+    name : nameCheck,
+    phone : phoneCheck
+  };*/
+
+  const changeMessageResult = (value) => {
+
+    let result;
+
+      switch (name){
+        case "email" :
+          result =  emailCheck(value);
+          break;
+
+        case "password" :
+          result =  passwordCheck(value);
+          break;
+
+        case "name" :
+          result = nameCheck(value);
+          break;
+
+        case "phone" :
+          result = phoneCheck(value);
+          break;
+      };
+
+    setCheckData({
+      state : result.state,
+      message : result.message
+    });
+
+    console.log(result.state);
+  };
+
   return (
     <div>
       <UserInputTitle>
         {children}
       </UserInputTitle>
 
-      <UserInputStyle type={props.type} name={props.name} defaultValue={props.value} onChange={props.onChange} placeholder={props.placeholder}/>
+      <JoinInputStyle type={props.type} name={name} defaultValue={props.value} onChange={(e) => {
+        props.onChange(e);
+        changeMessageResult(props.value);
+      }} placeholder={props.placeholder}/>
+
+      <div>
+        {/* styled 요소로만 사용하는 state 값은 $를 붙여 명시해주어야 react 문법에 맞다 */}
+        <CheckMessage $state={checkData.state}>
+          {checkData.message}
+        </CheckMessage>
+      </div>
     </div>
   )
-}
+};
