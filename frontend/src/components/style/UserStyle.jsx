@@ -90,7 +90,7 @@ export function LoginInput({children, ...props}) {
 
 const CheckMessage = styled.p `
   margin-bottom: 0.9rem;
-  color: ${ (props) => (props.$state === "success" ? "green" : "red")};
+  color: ${ (props) => (props.$state ? "green" : "red")};
   font-size: 0.90rem;
   font-weight: 400;
   height: 1.1rem;
@@ -152,8 +152,8 @@ export function JoinInput({children, checkFunction, name, ...props}) {
 
       <JoinInputStyle type={props.type} name={name} defaultValue={props.value} onChange={(e) => {
         props.onChange(e);
-        changeMessageResult(props.value);
-      }} placeholder={props.placeholder}/>
+        /*changeMessageResult(props.value);*/
+      }} onBlur={() => changeMessageResult(props.value)}  placeholder={props.placeholder}/>
 
       <div>
         {/* styled 요소로만 사용하는 state 값은 $를 붙여 명시해주어야 react 문법에 맞다 */}
