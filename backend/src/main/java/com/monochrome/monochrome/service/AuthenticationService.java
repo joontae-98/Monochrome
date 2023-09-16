@@ -38,6 +38,7 @@ public class AuthenticationService {
             .phone(request.getPhone())
             .build();
     userRepository.save(user);
+
     String jwtToken = jwtService.generateToken(user);
     return AuthenticationResponse.builder()
             .token(jwtToken)

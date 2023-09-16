@@ -1,21 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {login} from "../service/AuthApi";
 import {InfoLink, LoginInput, LoginLogo, PageInfo, UserLayout} from "./style/UserStyle";
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 function Login(props) {
-  const [state, setState] = useState({
-    email: '1@1.1',
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
     password: ''
   });
 
+  const [isAnonymous, setIsAnonymous] = useState(true);
+
   const handleChange = (e) => {
-    setState({
-      ...state,
+    setLoginInfo({
+      ...loginInfo,
       [e.target.name]: e.target.value
     });
+
+    checkValid();
   };
+
+  const checkValid = () => {
+    // setIsAnonymous(true);
+    if(loginInfo.email.length >= 3 && loginInfo.password.length >= 1){
+      setIsAnonymous(false);
+    } else {
+      setIsAnonymous(true);
+    }
+  }
 
   const loginClicked = () => {
     /*
@@ -30,7 +43,7 @@ function Login(props) {
 
     // axios create를 이용한 방식
     // 참고 링크 https://velog.io/@sihoon_cho/React-SpringBoot-JWT-%EC%9D%B8%EC%A6%9D-%EA%B5%AC%ED%98%84-React%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
-    login(state)
+    login(loginInfo)
         .then(res => {
           localStorage.setItem('token', res.token);
           window.location.href = '/';
@@ -40,9 +53,9 @@ function Login(props) {
         });
   };
 
-  const testClicked = () => {
+  /*const testClicked = () => {
     localStorage.removeItem('token')
-  }
+  }*/
 
   return (<div>
     <UserLayout>
@@ -54,16 +67,16 @@ function Login(props) {
 
       <Row className={'justify-content-center'}>
         <Col sm={4}>
-          <LoginInput type={"text"} name={"username"} value={state.email} onChange={handleChange}>
+          <LoginInput type={"text"} name={"email"} value={loginInfo.email} onChange={handleChange}>
             이메일
           </LoginInput>
-          <LoginInput type={"password"} name={"password"} value={state.password} onChange={handleChange}>
+          <LoginInput type={"password"} name={"password"} value={loginInfo.password} onChange={handleChange}>
             비밀번호
           </LoginInput>
 
           <div className={'d-grid gap-2 pt-3'}>
-            <button className="btn btn-dark py-2" onClick={loginClicked}>LOGIN</button>
-            <Link to={'/'}>
+            <button className="btn btn-dark user-btn1" onClick={loginClicked} disabled={isAnonymous}>LOGIN</button>
+            <Link to={'/join'}>
               <InfoLink>회원가입</InfoLink>
             </Link>
           </div>
