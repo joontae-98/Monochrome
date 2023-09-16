@@ -44,3 +44,10 @@ export const isUserLoggedIn = () => {
   return true;
 }
 
+/* Join */
+export const join = async ({email, password, name, phone}) => {
+  const data = {email, password, name, phone};
+  const response = await AuthApi.post(`/auth/register`, data);
+  return response.data;
+}
+

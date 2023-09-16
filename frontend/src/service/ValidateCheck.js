@@ -14,7 +14,7 @@ const result = {
 };
 
 const regExpType = {
-  email : /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/,
+  email : /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{2,3}$/,
   password : /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/,
   phone : /^01(?:0|1|[6-9])(?:\d{3}|\d{4})\d{4}$/,
 }
@@ -50,7 +50,7 @@ export function passwordCheck(value){
 
   if(!regExpType.password.test(value)){
     result.state = false;
-    result.message = "숫자, 영문자, 특수문자 포함 8자리 이상!"
+    result.message = "숫자, 영문자, 특수문자 포함 8자리 이상"
   } else {
     result.state = true;
     result.message = "사용 가능한 비밀번호입니다.";

@@ -81,7 +81,7 @@ export function LoginInput({children, ...props}) {
         {children}
       </UserInputTitle>
 
-      <UserInputStyle type={props.type} name={props.name} defaultValue={props.value} onChange={props.onChange}/>
+      <UserInputStyle type={props.type} name={props.name} defaultValue={props.value} onChange={props.onChange} onBlur={props.onChange}/>
     </div>
   )
 }
@@ -100,10 +100,10 @@ const JoinInputStyle = styled(UserInputStyle)`
   margin-bottom: 0.4rem;
 `;
 
-export function JoinInput({children, checkFunction, name, ...props}) {
+export function JoinInput({children, checkFunction, index, name, ...props}) {
 
   const [checkData, setCheckData] = useState({
-    state : "fail",
+    state : false,
     message : "",
   });
 
@@ -141,7 +141,8 @@ export function JoinInput({children, checkFunction, name, ...props}) {
       message : result.message
     });
 
-    console.log(result.state);
+    // console.log(result.state);
+    checkFunction(index, result.state);
   };
 
   return (
@@ -150,10 +151,12 @@ export function JoinInput({children, checkFunction, name, ...props}) {
         {children}
       </UserInputTitle>
 
-      <JoinInputStyle type={props.type} name={name} defaultValue={props.value} onChange={(e) => {
+      <JoinInputStyle type={props.type} name={name} defaultValue={props.value} onBlur={(e) => {
+        changeMessageResult(props.value);
+      }} onKeyUp={(e) => {
         props.onChange(e);
-        /*changeMessageResult(props.value);*/
-      }} onBlur={() => changeMessageResult(props.value)}  placeholder={props.placeholder}/>
+        changeMessageResult(props.value);
+      }} placeholder={props.placeholder}/>
 
       <div>
         {/* styled 요소로만 사용하는 state 값은 $를 붙여 명시해주어야 react 문법에 맞다 */}

@@ -34,6 +34,7 @@ public class UserController {
     @RequestBody RegisterRequest request
   ) throws Exception {
     if(ResponseEntity.ok(authenticationService.register(request)).hasBody()){
+      // 로그인에 성공하면 입력한 이름을 반환한다.
       return request.getName();
     } else {
       return "Fail";

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {login} from "../service/AuthApi";
 import {InfoLink, LoginInput, LoginLogo, PageInfo, UserLayout} from "./style/UserStyle";
 import {Col, Row} from "react-bootstrap";
@@ -6,16 +6,29 @@ import {Link} from "react-router-dom";
 
 function Login(props) {
   const [loginInfo, setLoginInfo] = useState({
-    email: '1@1.1',
+    email: '',
     password: ''
   });
+
+  const [isAnonymous, setIsAnonymous] = useState(true);
 
   const handleChange = (e) => {
     setLoginInfo({
       ...loginInfo,
       [e.target.name]: e.target.value
     });
+
+    checkValid();
   };
+
+  const checkValid = () => {
+    // setIsAnonymous(true);
+    if(loginInfo.email.length >= 3 && loginInfo.password.length >= 1){
+      setIsAnonymous(false);
+    } else {
+      setIsAnonymous(true);
+    }
+  }
 
   const loginClicked = () => {
     /*
@@ -40,9 +53,9 @@ function Login(props) {
         });
   };
 
-  const testClicked = () => {
+  /*const testClicked = () => {
     localStorage.removeItem('token')
-  }
+  }*/
 
   return (<div>
     <UserLayout>
@@ -54,7 +67,7 @@ function Login(props) {
 
       <Row className={'justify-content-center'}>
         <Col sm={4}>
-          <LoginInput type={"text"} name={"username"} value={loginInfo.email} onChange={handleChange}>
+          <LoginInput type={"text"} name={"email"} value={loginInfo.email} onChange={handleChange}>
             이메일
           </LoginInput>
           <LoginInput type={"password"} name={"password"} value={loginInfo.password} onChange={handleChange}>
@@ -62,7 +75,7 @@ function Login(props) {
           </LoginInput>
 
           <div className={'d-grid gap-2 pt-3'}>
-            <button className="btn btn-dark user-btn1" onClick={loginClicked}>LOGIN</button>
+            <button className="btn btn-dark user-btn1" onClick={loginClicked} disabled={isAnonymous}>LOGIN</button>
             <Link to={'/join'}>
               <InfoLink>회원가입</InfoLink>
             </Link>
