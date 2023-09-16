@@ -9,20 +9,13 @@ import ballCap from "../../static/images/category/ball_cap.jpg";
 
 const CategoryList = (props) => {
   return (<>
-    <Row>
-      <Col>
-        <ProductBox src={top}/>
-      </Col>
-      <Col>
-        <ProductBox src={pants}/>
-      </Col>
-      <Col>
-        <ProductBox src={shoes}/>
-      </Col>
-      <Col>
-        <ProductBox src={ballCap}/>
-      </Col>
-    </Row>
+    <div className={'d-flex justify-content-around'}>
+      <ProductBox src={top}>
+      </ProductBox>
+      <ProductBox src={pants}/>
+      <ProductBox src={shoes}/>
+      <ProductBox src={ballCap}/>
+    </div>
   </>)
 }
 
